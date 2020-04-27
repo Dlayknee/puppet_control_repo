@@ -3,6 +3,10 @@ class profile::agent_nodes {
   dockeragent::node {'web.puppet.vm':}
   dockeragent::node {'db.puppet.vm':}
   dockeragent::node {'minetest.puppet.vm':}
+  dockeragent::node {'ssh.puppet.vm':
+    ensure => absent
+  }
+
   host {'web.puppet.vm':
     ensure => present,
     ip => '172.18.0.2',
