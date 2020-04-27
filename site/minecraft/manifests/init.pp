@@ -2,6 +2,12 @@ class minecraft {
   file {'/opt/minecraft':
     ensure => directory,
   }
+  file_line { 'workaround-puppet-agent-6-14-ssl-issue':
+    ensure => present,
+    path   => "${facts['rubysitedir']}/../../vendor_ruby/puppet/type/file/source.rb",
+    line   => '      client.get(url, include_system_store: true) do |response|',
+    match  => '^      client.get\(url\) do \|response\|',
+  }
   file {'/opt/minecraft/server.jar':
     ensure => file,
     source => 'https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar',
