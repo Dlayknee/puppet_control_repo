@@ -11,10 +11,6 @@ node 'minetest.puppet.vm' {
   include role::minecraft_server
 }
 
-node /^ssh/ {
-  ensure => absent
-}
-
 node /^web/ {
   include role::app_server
 }
